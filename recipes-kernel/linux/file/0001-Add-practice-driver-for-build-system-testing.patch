@@ -1,0 +1,70 @@
+From ea7d2b944ed241f3d206a11eb7fad875d7258c18 Mon Sep 17 00:00:00 2001
+From: "JunKi, Hong" <dylanhong920509@gmail.com>
+Date: Sat, 2 May 2026 23:30:12 +0900
+Subject: [PATCH] Add practice driver for build system testing
+
+Introduces a minimal practice driver to facilitate testing of the build system and Kconfig infrastructure. The driver does not provide functional device support but helps verify correct integration and configuration workflows.
+---
+ drivers/misc/Kconfig    |  6 ++++++
+ drivers/misc/Makefile   |  1 +
+ drivers/misc/practice.c | 19 +++++++++++++++++++
+ 3 files changed, 26 insertions(+)
+ create mode 100644 drivers/misc/practice.c
+
+diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+index 0f5a49fc7c9e..8c694f30a491 100644
+--- a/drivers/misc/Kconfig
++++ b/drivers/misc/Kconfig
+@@ -5,6 +5,12 @@
+ 
+ menu "Misc devices"
+ 
++config PRACTICE
++	tristate "Practice driver"
++	help
++	  This is a practice driver for testing the build system and Kconfig
++	  infrastructure. It doesn't do anything.
++
+ config SENSORS_LIS3LV02D
+ 	tristate
+ 	depends on INPUT
+diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
+index a086197af544..43035db18478 100644
+--- a/drivers/misc/Makefile
++++ b/drivers/misc/Makefile
+@@ -3,6 +3,7 @@
+ # Makefile for misc devices that really don't fit anywhere else.
+ #
+ 
++obj-$(CONFIG_PRACTICE)		+= practice.o
+ obj-$(CONFIG_IBM_ASM)		+= ibmasm/
+ obj-$(CONFIG_IBMVMC)		+= ibmvmc.o
+ obj-$(CONFIG_AD525X_DPOT)	+= ad525x_dpot.o
+diff --git a/drivers/misc/practice.c b/drivers/misc/practice.c
+new file mode 100644
+index 000000000000..7e1bd93cf185
+--- /dev/null
++++ b/drivers/misc/practice.c
+@@ -0,0 +1,19 @@
++#include <linux/module.h>
++
++static int __init practice_driver_init(void)
++{
++    pr_warn("This is practice driver!\n");
++    return 0;
++}
++
++static void __exit practice_driver_exit(void)
++{
++    pr_warn("Exit practice driver!\n");
++}
++
++module_init(practice_driver_init);
++module_exit(practice_driver_exit);
++
++MODULE_AUTHOR("Dylan Hong");
++MODULE_DESCRIPTION("practice driver");
++MODULE_LICENSE("GPL");
+-- 
+2.43.0
+
