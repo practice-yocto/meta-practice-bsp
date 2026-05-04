@@ -14,12 +14,12 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 SRCREV = "${AUTOREV}"
 
 # defconfig file to be used for the kernel build
-SRC_URI += "file://defconfig "
+# SRC_URI += "file://defconfig "
 
 # SCC
-SRC_URI += "\
-    file://practice-kernel.scc \
-    "
+# SRC_URI += "\
+#     file://practice-kernel.scc \
+#     "
 
 # fragment configs
 # SRC_URI += "\
@@ -31,6 +31,9 @@ SRC_URI += "\
 # SRC_URI += "\
 #     file://0001-Add-practice-driver-for-build-system-testing.patch \
 #     "
+
+# The defconfig file is used to configure the kernel build.
+KBUILD_DEFCONFIG = "practice_defconfig"
 
 LINUX_VERSION ?= "5.15"
 LINUX_VERSION_EXTENSION ?= "-practice"
