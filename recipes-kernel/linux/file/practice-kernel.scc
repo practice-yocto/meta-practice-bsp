@@ -1,0 +1,10 @@
+# This file is part of the Yocto Project, a Linux Foundation project.
+# See LICENSE file in the top-level directory.
+define KFEATURE_DESCRIPTION "Kernel configuration for practice board"
+
+# fragment configs
+kconf non-hardware enable_ext3_fs.cfg
+kconf non-hardware enable_practice.cfg
+
+# patches
+patch 0001-Add-practice-driver-for-build-system-testing.patch
