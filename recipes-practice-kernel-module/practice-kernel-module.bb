@@ -10,6 +10,8 @@ SRC_URI = "\
     file://COPYING \
     "
 
+RPROVIDES:${PN} += "kernel-module-practice-kernel-module"
+
 KERNEL_MODULE_AUTOLOAD += "practice-kernel-module"
 S = "${WORKDIR}"
 ALLOW_EMPTY_${PN} = "1"
