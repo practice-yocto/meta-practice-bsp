@@ -14,5 +14,5 @@ RPROVIDES:${PN} += "kernel-module-practice-kernel-module"
 
 KERNEL_MODULE_AUTOLOAD += "practice-kernel-module"
 S = "${WORKDIR}"
-ALLOW_EMPTY_${PN} = "1"
+ALLOW_EMPTY:${PN} = "1"
 FILESEXTRAPATHS:prepend := "${THISDIR}/file:"
